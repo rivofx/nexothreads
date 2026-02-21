@@ -83,7 +83,7 @@ function EditProfileModal({ profile, onClose }: { profile: Profile; onClose: () 
 
     const { error: updateError } = await supabase
       .from('profiles')
-      .update(updatePayload as unknown as never)
+      .update(updatePayload)
       .eq('id', profile.id);
 
     if (updateError) { setError(updateError.message); setLoading(false); return; }
