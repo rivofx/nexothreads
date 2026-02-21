@@ -12,12 +12,15 @@ export async function createClient() {
         getAll() {
           return cookieStore.getAll();
         },
-        setAll(cookiesToSet) {
-          try {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          } catch {
+        setAll(cookiesToSet: { name: string; value: string; options?: Record<string, any> }[]) {
+  try {
+    cookiesToSet.forEach(({ name, value, options }) =>
+      cookieStore.set(name, value, options)
+    )
+  } catch (err) {
+    // handle error
+  }
+} catch {
             // Server Component — cookies set by middleware
           }
         },
